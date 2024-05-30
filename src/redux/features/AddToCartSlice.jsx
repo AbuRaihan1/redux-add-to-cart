@@ -9,7 +9,7 @@ export const addToCartSlice = createSlice({
     addToCart: (state, action) => {
       state.cart.push(action.payload);
     },
-    
+
     removeToCart: (state, action) => {
       const removedCart = state.cart.filter(
         (oneCart) => oneCart.id !== action.payload.id
