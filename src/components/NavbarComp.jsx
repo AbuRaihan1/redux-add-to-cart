@@ -11,11 +11,14 @@ import {
   Drawer,
 } from "flowbite-react";
 
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleDrawerClose,
+  handleDrawerOpen,
+} from "../redux/features/CartDrawerSlice";
 
 const NavbarComp = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleClose = () => setIsOpen(false);
+  const dispatch = useDispatch();
   return (
     <>
       <Navbar fluid rounded className=" bg-gray-100 mb-5">
@@ -31,16 +34,12 @@ const NavbarComp = () => {
           </NavbarLink>
           <FaCartPlus
             className="cursor-pointer w-8 h-8 "
-            onClick={() => setIsOpen(true)}
+            onClick={() => dispatch(handleDrawerOpen())}
           />
         </NavbarCollapse>
       </Navbar>
 
-      <CartDrawer
-        isOpen={isOpen}
-        handleClose={handleClose}
-        setIsOpen={setIsOpen}
-      />
+      <CartDrawer />
     </>
   );
 };

@@ -1,15 +1,21 @@
 import React from "react";
 import { Button, Drawer } from "flowbite-react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartTable from "./CartTable";
-const CartDrawer = ({ isOpen, setIsOpen }) => {
-  const handleClose = () => setIsOpen(false);
+import { handleDrawerClose } from "../../redux/features/CartDrawerSlice";
+const CartDrawer = () => {
+  const openDrawer = useSelector((state) => state.handleDrawerOpen.isOpen);
+  const dispatch = useDispatch();
   const carts = useSelector((addCart) => addCart.addToCart.cart);
   return (
     <>
       <div className="flex min-h-[50vh] items-center justify-center"></div>
-      <Drawer open={isOpen} onClose={handleClose} position="right">
+      <Drawer
+        open={openDrawer}
+        onClose={() => dispatch(handleDrawerClose())}
+        position="right"
+      >
         <Drawer.Header title="Added Cart" />
         <Drawer.Items>
           <div className="space-y-3">
