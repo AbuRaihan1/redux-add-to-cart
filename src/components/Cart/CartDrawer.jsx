@@ -10,7 +10,7 @@ const CartDrawer = () => {
   const carts = useSelector((addCart) => addCart.addToCart.cart);
   return (
     <>
-      <div className="flex min-h-[50vh] items-center justify-center"></div>
+      <div className="flex min-h-[50vh] items-center justify-center absolute"></div>
       <Drawer
         open={openDrawer}
         onClose={() => dispatch(handleDrawerClose())}

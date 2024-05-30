@@ -38,7 +38,6 @@ const NavbarComp = () => {
           />
         </NavbarCollapse>
       </Navbar>
-
       <CartDrawer />
     </>
   );
