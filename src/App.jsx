@@ -5,10 +5,12 @@ import Products from "./components/Cart/Products";
 import Container from "./utils/Container";
 export default function App() {
   return (
-    <Container>
+    <>
       <NavbarComp />
-      <Products />
+      <Container>
+        <Products />
+      </Container>
       <FooterComp />
-    </Container>
+    </>
   );
 }

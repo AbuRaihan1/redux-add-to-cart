@@ -23,7 +23,7 @@ const NavbarComp = () => {
   const carts = useSelector((cart) => cart.cartStore.cart);
   return (
     <>
-      <Navbar fluid rounded className=" bg-gray-100 mb-5">
+      <Navbar fluid rounded className=" bg-gray-100  fixed w-full ">
         <NavbarBrand href="/">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Cart System{" "}

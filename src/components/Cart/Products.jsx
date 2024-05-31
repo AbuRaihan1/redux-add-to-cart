@@ -1,14 +1,16 @@
 import SingleProduct from "./SingleProduct";
+import wirelesMouse from "../../assets/images/wirelessMouse.jfif";
 import headphone from "../../assets/images/headphone.jfif";
 import camera from "../../assets/images/camera.jfif";
-import cube from "../../assets/images/cube.jfif";
-import makeup from "../../assets/images/makeup.jfif";
-import phone from "../../assets/images/phone.jfif";
-import serum from "../../assets/images/serum.jfif";
-import shampoo from "../../assets/images/shampoo.jfif";
-import shoe from "../../assets/images/shoe.jfif";
+import ledDeskLamp from "../../assets/images/ledDeskLamp.jfif";
+import portableCharger from "../../assets/images/portableCharger.jfif";
+import gamingKeyboard from "../../assets/images/gamingKeyboard.jfif";
+import fitnessTracker from "../../assets/images/fitnessTracker.jfif";
+import fourKMonitor from "../../assets/images/4kMonitor.jfif";
+import smartSpeaker from "../../assets/images/smartSpeaker.jfif";
 import watch from "../../assets/images/watch.jfif";
-import oil from "../../assets/images/oil.jfif";
+import electricCatter from "../../assets/images/electricCatter.jfif";
+import { useSelector } from "react-redux";
 
 const Products = () => {
   const products = [
@@ -21,7 +23,7 @@ const Products = () => {
       rating: 4.5,
       description:
         "A comfortable and responsive wireless mouse with ergonomic design.",
-      img: headphone,
+      img: wirelesMouse,
     },
     {
       id: 2,
@@ -32,7 +34,7 @@ const Products = () => {
       rating: 4.7,
       description:
         "Noise-canceling Bluetooth headphones with excellent sound quality.",
-      img: oil,
+      img: headphone,
     },
     {
       id: 3,
@@ -43,7 +45,7 @@ const Products = () => {
       rating: 4.3,
       description:
         "A sleek and modern smart watch with fitness tracking capabilities.",
-      img: camera,
+      img: watch,
     },
     {
       id: 4,
@@ -54,7 +56,7 @@ const Products = () => {
       rating: 4.2,
       description:
         "Adjustable LED desk lamp with multiple brightness levels and USB charging port.",
-      img: cube,
+      img: ledDeskLamp,
     },
     {
       id: 5,
@@ -65,7 +67,7 @@ const Products = () => {
       rating: 4.6,
       description:
         "Compact and powerful portable charger with fast charging capabilities.",
-      img: makeup,
+      img: portableCharger,
     },
     {
       id: 6,
@@ -75,7 +77,7 @@ const Products = () => {
       inStock: false,
       rating: 4.8,
       description: "Mechanical gaming keyboard with customizable RGB lighting.",
-      img: phone,
+      img: gamingKeyboard,
     },
     {
       id: 7,
@@ -86,7 +88,7 @@ const Products = () => {
       rating: 4.4,
       description:
         "Waterproof fitness tracker with heart rate monitoring and sleep tracking.",
-      img: serum,
+      img: fitnessTracker,
     },
     {
       id: 8,
@@ -97,7 +99,7 @@ const Products = () => {
       rating: 4.7,
       description:
         "Ultra HD 4K monitor with stunning visuals and vibrant colors.",
-      img: shampoo,
+      img: fourKMonitor,
     },
     {
       id: 9,
@@ -107,7 +109,7 @@ const Products = () => {
       inStock: true,
       rating: 4.5,
       description: "Voice-controlled smart speaker with premium sound quality.",
-      img: shoe,
+      img: smartSpeaker,
     },
     {
       id: 10,
@@ -118,12 +120,14 @@ const Products = () => {
       rating: 4.1,
       description:
         "Fast-boiling electric kettle with temperature control and auto shut-off.",
-      img: watch,
+      img: electricCatter,
     },
   ];
 
+  const carts = useSelector((addedCart) => addedCart.cartStore.cart);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-24">
       {products?.map((product) => (
         <SingleProduct product={product} key={product.id} />
       ))}

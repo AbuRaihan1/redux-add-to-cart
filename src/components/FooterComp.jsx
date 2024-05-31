@@ -10,7 +10,7 @@ import {
 
 const FooterComp = () => {
   return (
-    <Footer container>
+    <Footer container className="mt-10">
       <div className="w-full text-center">
         <div className="w-full justify-between flex items-center sm:flex  sm:items-center sm:justify-between">
           <FooterLinkGroup>
