@@ -9,15 +9,10 @@ import { FaLastfmSquare } from "react-icons/fa";
 
 const SingleProduct = ({ product }) => {
   const { name, price, rating, description, inStock, img } = product;
-  const [addCartBtn, setAddCartBtn] = useState(false);
   const dispatch = useDispatch();
   const [showToast, setShowToast] = useState(false);
 
   const carts = useSelector((addedCart) => addedCart.cartStore.cart);
-
-  // const singleCart = carts?.map((oneCart) => {
-  //   oneCart.id === product.id;
-  // });
 
   const handleShowToast = () => {
     setShowToast(true);
@@ -27,23 +22,9 @@ const SingleProduct = ({ product }) => {
   };
 
   const addToCartProduct = () => {
-    // if (carts?.length < 0) {
-    //   setAddCartBtn(false);
-    // }
-    // if (addCartBtn === true && carts?.length > 0) {
-    //   setAddCartBtn(true);
-    // }
     dispatch(addToCart(product));
     handleShowToast();
     dispatch(handleDrawerOpen());
-    setAddCartBtn(true);
-
-    // if (addCartBtn === false && carts?.length <= 0) {
-    // }
-  };
-
-  const getID = (id) => {
-    // console.log(id);
   };
 
   return (
@@ -122,21 +103,9 @@ const SingleProduct = ({ product }) => {
 
         <div>
           <div onClick={addToCartProduct}>
-            {addCartBtn ? (
-              <span
-                className="cursor-not-allowed bg-red-200 p-2 rounded-lg font-bold text-gray-400"
-                disabled
-              >
-                Already Added Cart
-              </span>
-            ) : (
-              <button
-                onClick={() => getID(product.id)}
-                className="cursor-pointer rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none"
-              >
-                Add to cart
-              </button>
-            )}
+            <button className="cursor-pointer rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none">
+              Add to cart
+            </button>
           </div>
         </div>
       </div>

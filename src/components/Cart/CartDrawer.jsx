@@ -12,7 +12,7 @@ const CartDrawer = () => {
   const totalPrice = carts?.reduce((accumulator, item) => {
     const price = item.price * item.quantity;
     const total = (accumulator = accumulator + price);
-    const parseTotal = Math.round(total);
+    const parseTotal = Math.ceil(total);
     return parseTotal;
   }, 0);
   return (
@@ -25,22 +25,30 @@ const CartDrawer = () => {
       >
         <Drawer.Header title="Added Cart" />
         <Drawer.Items>
-          <div className="space-y-3 mb-32">
-            {carts?.map((cart, idx) => (
-              <CartTable cart={cart} key={idx} />
-            ))}
-          </div>
-
-          <div className="w-[280px] h-[130px] bottom-0 fixed bg-white border-t pt-2">
-            <div className="flex justify-between items-center">
-              <h2 className="font-bold text-2xl">Subtotal</h2>
-              <p className="font-bold text-2xl">${totalPrice}</p>
+          {carts?.length > 0 ? (
+            <div className="space-y-3 mb-32">
+              {carts?.map((cart, idx) => (
+                <CartTable cart={cart} key={idx} />
+              ))}
             </div>
-            <Button color="dark" pill className="absolute bottom-3 ml-14">
-              Procced to checkout
-              <HiArrowRight className="ml-2 h-5 w-5 " />
-            </Button>
-          </div>
+          ) : (
+            <h2 className="font-bold text-2xl flex justify-center items-center mt-20">
+              No cart Added{" "}
+            </h2>
+          )}
+
+          {carts?.length > 0 && (
+            <div className="w-[280px] h-[130px] bottom-0 fixed bg-white border-t pt-2">
+              <div className="flex justify-between items-center">
+                <h2 className="font-bold text-2xl">Subtotal</h2>
+                <p className="font-bold text-2xl">${totalPrice}</p>
+              </div>
+              <Button color="dark" pill className="absolute bottom-3 ml-14">
+                Procced to checkout
+                <HiArrowRight className="ml-2 h-5 w-5 " />
+              </Button>
+            </div>
+          )}
         </Drawer.Items>
       </Drawer>
     </>
