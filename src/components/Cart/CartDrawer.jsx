@@ -32,9 +32,14 @@ const CartDrawer = () => {
               ))}
             </div>
           ) : (
-            <h2 className="font-bold text-2xl flex justify-center items-center mt-20">
-              No cart Added{" "}
-            </h2>
+            <div>
+              <h2 className="font-bold text-2xl flex justify-center items-center mt-20">
+                No Cart Added{" "}
+              </h2>
+              <Button href="/ " pill className="mt-5 w-[200px] ml-12">
+                Go to shop{" "}
+              </Button>
+            </div>
           )}
 
           {carts?.length > 0 && (
