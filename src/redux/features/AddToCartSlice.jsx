@@ -4,10 +4,19 @@ export const addToCartSlice = createSlice({
   name: "addToCart",
   initialState: {
     cart: [],
+    cartItemCount: 0,
   },
   reducers: {
     addToCart: (state, action) => {
-      state.cart.push(action.payload);
+      const existingItem = state.cart.find(
+        (oneCart) => oneCart.id === action.payload.id
+      );
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        state.cart.push({ ...action.payload, quantity: 1 });
+      }
+      state.cartItemCount += 1;
     },
 
     removeToCart: (state, action) => {
@@ -16,8 +25,41 @@ export const addToCartSlice = createSlice({
       );
       state.cart = removedCart;
     },
+
+    // cart item count handler
+    handleCartItemIncrease: (state, action) => {
+      const selectedItemIncrease = state.cart.find(
+        (slctCart) => slctCart.id === action.payload
+      );
+
+      if (selectedItemIncrease) {
+        selectedItemIncrease.quantity += 1;
+        state.cartItemCount += 1;
+      } else {
+        console.log("Item not found");
+      }
+    },
+
+    handleCartItemDecrease: (state, action) => {
+      const selectItemDecrease = state.cart.find(
+        (slctCart) => slctCart.id === action.payload
+      );
+      if (selectItemDecrease) {
+        selectItemDecrease.quantity -= 1;
+        if (selectItemDecrease.quantity < 1) {
+          selectItemDecrease.quantity = 1;
+        }
+      } else {
+        console.log("item not found");
+      }
+    },
   },
 });
 
-export const { addToCart, removeToCart } = addToCartSlice.actions;
+export const {
+  addToCart,
+  removeToCart,
+  handleCartItemDecrease,
+  handleCartItemIncrease,
+} = addToCartSlice.actions;
 export default addToCartSlice.reducer;

@@ -1,4 +1,3 @@
-import React from "react";
 import SingleProduct from "./SingleProduct";
 import headphone from "../../assets/images/headphone.jfif";
 import camera from "../../assets/images/camera.jfif";

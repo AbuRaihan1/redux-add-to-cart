@@ -7,12 +7,11 @@ import { HiMinus, HiPlus } from "react-icons/hi";
 import {
   handleCartItemIncrease,
   handleCartItemDecrease,
-} from "../../redux/features/CartItemHandler";
+} from "../../redux/features/AddToCartSlice.jsx";
 
 const CartTable = ({ cart }) => {
-  const { name, price, rating, description, inStock, img } = cart;
+  const { name, price, rating, description, inStock, img, quantity } = cart;
   const dispatch = useDispatch();
-  const cartCount = useSelector((state) => state.CartItemHandler.cartItemCount);
 
   return (
     <>
@@ -29,7 +28,11 @@ const CartTable = ({ cart }) => {
             </p>
             <p className="font-semibold text-gray-500">
               {" "}
-              Price : <span className="text-blue-500 font-bold">${price}</span>
+              Price :{" "}
+              <span className="text-blue-500 font-bold">
+                $
+                {(quantity > 0 && parseFloat(price * quantity).toFixed(2)) || 0}
+              </span>
             </p>
           </div>
         </div>
@@ -37,12 +40,12 @@ const CartTable = ({ cart }) => {
         <div className="flex items-center justify-between bg-gray-100 b border rounded-full px-3 py-2 w-full mt-3">
           <div className="flex items-center gap-3">
             <HiMinus
-              onClick={() => dispatch(handleCartItemDecrease())}
+              onClick={() => dispatch(handleCartItemDecrease(cart.id))}
               className="bg-gray-200 rounded-full p-1 w-6 h-6 cursor-pointer hover:bg-gray-300"
             />
-            <p className="font-bold text-xl">{cartCount}</p>
+            <p className="font-bold text-xl">{quantity}</p>
             <HiPlus
-              onClick={() => dispatch(handleCartItemIncrease())}
+              onClick={() => dispatch(handleCartItemIncrease(cart.id))}
               className="bg-gray-200 rounded-full p-1 w-6 h-6 cursor-pointer hover:bg-gray-300"
             />
           </div>

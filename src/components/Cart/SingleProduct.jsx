@@ -13,7 +13,7 @@ const SingleProduct = ({ product }) => {
   const dispatch = useDispatch();
   const [showToast, setShowToast] = useState(false);
 
-  const carts = useSelector((addedCart) => addedCart.addToCart.cart);
+  const carts = useSelector((addedCart) => addedCart.cartStore.cart);
 
   // const singleCart = carts?.map((oneCart) => {
   //   oneCart.id === product.id;
@@ -27,24 +27,25 @@ const SingleProduct = ({ product }) => {
   };
 
   const addToCartProduct = () => {
-    if (carts?.length < 0) {
-      setAddCartBtn(false);
-    }
-    if (addCartBtn === true && carts?.length > 0) {
-      setAddCartBtn(true);
-    }
+    // if (carts?.length < 0) {
+    //   setAddCartBtn(false);
+    // }
+    // if (addCartBtn === true && carts?.length > 0) {
+    //   setAddCartBtn(true);
+    // }
+    dispatch(addToCart(product));
+    handleShowToast();
+    dispatch(handleDrawerOpen());
+    setAddCartBtn(true);
 
-    if (addCartBtn === false && carts?.length <= 0) {
-      dispatch(addToCart(product));
-      handleShowToast();
-      dispatch(handleDrawerOpen());
-      setAddCartBtn(true);
-    }
+    // if (addCartBtn === false && carts?.length <= 0) {
+    // }
   };
 
   const getID = (id) => {
-    console.log(id);
+    // console.log(id);
   };
+
   return (
     <div className="border p-4">
       {showToast && (
