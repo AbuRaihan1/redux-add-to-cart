@@ -1,21 +1,18 @@
-import React from "react";
-import CartDrawer from "./Cart/CartDrawer";
-import { FaCartPlus, FaHome } from "react-icons/fa";
 import {
+  Badge,
   Navbar,
   NavbarBrand,
   NavbarCollapse,
   NavbarLink,
-  NavbarToggle,
-  Button,
-  Drawer,
-  Badge,
+  NavbarToggle
 } from "flowbite-react";
+import React from "react";
+import { FaCartPlus, FaHome } from "react-icons/fa";
+import CartDrawer from "./Cart/CartDrawer";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  handleDrawerClose,
-  handleDrawerOpen,
+  handleDrawerOpen
 } from "../redux/features/CartDrawerSlice";
 
 const NavbarComp = () => {

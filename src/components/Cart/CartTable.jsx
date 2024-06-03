@@ -1,12 +1,11 @@
 import React from "react";
-import { FiDelete, FiTrash } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
-import { removeToCart } from "../../redux/features/AddToCartSlice";
-import CartDrawer from "./CartDrawer";
+import { FiTrash } from "react-icons/fi";
 import { HiMinus, HiPlus } from "react-icons/hi";
+import { useDispatch } from "react-redux";
+import { removeToCart } from "../../redux/features/AddToCartSlice";
 import {
-  handleCartItemIncrease,
   handleCartItemDecrease,
+  handleCartItemIncrease,
 } from "../../redux/features/AddToCartSlice.jsx";
 
 const CartTable = ({ cart }) => {
@@ -14,6 +13,7 @@ const CartTable = ({ cart }) => {
   const dispatch = useDispatch();
 
   return (
+  
     <>
       <div className="border gap-3 rounded-2xl bg-[#fbf9f9] items-center pt-2 pb-3 px-2">
         <div className="flex justify-start gap-4 items-center">

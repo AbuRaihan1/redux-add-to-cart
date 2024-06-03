@@ -1,10 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import CartTable from "./CartTable";
-import { Button, Drawer, Dropdown } from "flowbite-react";
-import { handleDrawerClose } from "../../redux/features/CartDrawerSlice";
+import { Button, Drawer } from "flowbite-react";
 import { HiArrowRight } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
+import { handleDrawerClose } from "../../redux/features/CartDrawerSlice";
+import CartTable from "./CartTable";
+import { CartProgress } from "./ProgressBar";
 
 const CartDrawer = () => {
+
+  const savedItems = localStorage.getItem('localCart');
+  if(savedItems) {
+    const cartData = JSON.parse(savedItems);
+    console.log(cartData);
+  }
+
   const dispatch = useDispatch();
   const openDrawer = useSelector((state) => state.drawerStore.isOpen);
   const carts = useSelector((addCart) => addCart.cartStore.cart);
@@ -17,7 +25,6 @@ const CartDrawer = () => {
   }, 0);
   return (
     <>
-      <div className="flex min-h-[50vh] items-center justify-center absolute"></div>
       <Drawer
         open={openDrawer}
         onClose={() => dispatch(handleDrawerClose())}
@@ -27,6 +34,7 @@ const CartDrawer = () => {
         <Drawer.Items>
           {carts?.length > 0 ? (
             <div className="space-y-3 mb-32">
+              <CartProgress />
               {carts?.map((cart, idx) => (
                 <CartTable cart={cart} key={idx} />
               ))}

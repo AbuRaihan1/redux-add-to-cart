@@ -1,18 +1,24 @@
-import React, { useState } from "react";
-import { Badge, Card, Toast } from "flowbite-react";
+import { Toast } from "flowbite-react";
+import { useEffect, useState } from "react";
 import { HiCheck } from "react-icons/hi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/AddToCartSlice";
 import { handleDrawerOpen } from "../../redux/features/CartDrawerSlice";
-import CartDrawer from "./CartDrawer";
-import { FaLastfmSquare } from "react-icons/fa";
 
 const SingleProduct = ({ product }) => {
-  const { name, price, rating, description, inStock, img } = product;
+  const { name, price, description, img } = product;
   const dispatch = useDispatch();
   const [showToast, setShowToast] = useState(false);
+  const [addCart, setAddCart] = useState([]);
 
-  const carts = useSelector((addedCart) => addedCart.cartStore.cart);
+  useEffect(() => {
+    // Initialize state from localStorage if available
+    const savedCart = localStorage.getItem('localCart');
+    if (savedCart) {
+      setAddCart(JSON.parse(savedCart));
+    }
+  }, []);
+
   const handleShowToast = () => {
     setShowToast(true);
     setTimeout(() => {
@@ -27,7 +33,7 @@ const SingleProduct = ({ product }) => {
   };
 
   return (
-    <div className=" p-4 rounded-lg shadow-md">
+    <div className="p-4 rounded-lg shadow-md">
       {showToast && (
         <>
           <Toast className="border fixed bottom-3 left-3 z-50 mx-auto">
@@ -36,7 +42,7 @@ const SingleProduct = ({ product }) => {
             </div>
             <div className="ml-3 text-sm font-normal">
               <span className="font-bold text-green-400">
-                {product?.name || cart}
+                {product?.name}
               </span>{" "}
               Added Successfully
             </div>
@@ -55,7 +61,6 @@ const SingleProduct = ({ product }) => {
         <span className="text-3xl font-bold text-gray-900 dark:text-white">
           {price}
         </span>
-
         <div>
           <div onClick={addToCartProduct} className="">
             <button className="cursor-pointer rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none">
